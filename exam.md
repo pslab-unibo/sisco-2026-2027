@@ -8,7 +8,7 @@ The exam includes two parts: a (1) practical part and (2) an oral discussion.
 
 ### Practical Part
 
-The practical part concern the development of **assignments** proposed during the course, that are small projects about main parts
+The practical part concern the development of **assignments** proposed during the course, that are small projects about main parts.
 - There will be 3 assignments, one for each main part of the course.
 - Assignments are announced during the course, but there are **no deadlines** for delivering them. 
 - Assignments can be done either individually or in groups (max 3 persons – exceptions should be discussed).
