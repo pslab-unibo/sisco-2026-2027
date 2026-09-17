@@ -10,6 +10,10 @@ version: 1.0.0 - last update: 20260917
 - A tool for specifying models in FSP, producing the corresponding LTSs and analysing them
 - Java-based (quite old, but still working)
 - Can be downloaded at https://www.doc.ic.ac.uk/ltsa/
+- Executable jar available [here](./ltsatool/ltsa.jar)
+  - To run: `java -jar ltsa.jar`
+  - To run extending JVM initial heap memory (e.g. to 1 GB): `java -Xms1g -jar ltsa.jar`
+  
 
 Reference documentation:  
 - "Concurrency: State Models & Java Programs" (Jeff Magee, Jeff Kramer) book
@@ -21,7 +25,7 @@ Reference documentation:
 **Working with the tool - modelling single processes**
 
 - Action Prefix 
-  - Modelling a simple clock, that does tick all time
+  - Modelling a simple clock, that ticks all time
 
 - Choice operator
   - Extend the clock so that it can be started and stopped
