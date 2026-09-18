@@ -57,6 +57,6 @@ Before starting the process, a sugar level can be chosen (SL levels).
 
 *Extension #2: Bounded resources*
 
-The coffee or tea can finish: in that case the machine enters in a maintenance mode, waiting to be restored. 
+The coffee or tea can finish. If a beverage is not available, it cannot be selected. If no beverage is available, the machine enters in a maintenance mode, waiting to be restored. 
 
 
