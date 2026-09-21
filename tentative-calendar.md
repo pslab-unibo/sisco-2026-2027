@@ -30,7 +30,7 @@ Mon 28 - Aula
 
 Fri 2 - Lab
 - Lab-Activity #03
-- <assignment #1>
+- Assignment #01 announcement
 
 *OCTOBER*
 
@@ -76,7 +76,7 @@ Mon 02 - Aula
 
 Fri 06 - Lab
 - Lab-Activity #08
-- <assignment-02>
+- Assignment #02 announcement
 
 **== Week #9 - ASSIGNMENT #02 WEEK**  
 
@@ -109,7 +109,8 @@ Mon 30 - Aula
 
 Fri 4 - Lab
 - Lab-Activity #12
-- <assignment-03>
+- Assignment #03 announcement
+
 
 *DECEMBER*
 
