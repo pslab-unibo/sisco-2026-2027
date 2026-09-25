@@ -154,6 +154,8 @@ use the machine, drink the beverage, waiting a bit and then getting another one,
 - Modelling the Coffee Machine with sugar levels, and two users, one wanting only coffee with no sugar, and one wanting only tea with max sugar
   - the two users should not interfere
   
+**A look at more complex examples**
 
-
+- Modelling Space Invaders (from the book)
+  - [Space Invaders Model](./space_invaders.lts)
 

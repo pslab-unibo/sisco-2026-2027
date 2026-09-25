@@ -1,0 +1,82 @@
+/* SPACE INVADERS */
+
+const MAX = 4
+range D = 0..MAX
+set Coord = {[D][D],undef} //(x,y)
+set Sprite = {north,south,west,east,rest,action[D][D],create[D][D]}
+
+/* generic sprite behaviour */
+
+SPRITE =
+	(create[x:D][y:D] -> SPRITE[x][y]
+	|tick -> SPRITE
+	|pos.undef -> SPRITE
+	),
+SPRITE[x:D][y:D] =
+	(pos[x][y] -> SPRITE[x][y]
+	|tick ->
+		(north -> if y>0 then SPRITE[x][y-1] else END_
+		|south -> if y<MAX then SPRITE[x][y+1] else END_
+		|west -> if x>0 then SPRITE[x-1][y] else END_
+		|east -> if x<MAX then SPRITE[x+1][y] else END_
+		| {rest,action[x][y]} -> SPRITE[x][y]
+		)
+	),
+END_ = (end -> SPRITE).
+
+/* aliens */
+
+ALIEN_CONSTRAINT =
+	(create[D][0] -> MOVE),
+MOVE =
+	(south -> MOVE | end -> ALIEN_CONSTRAINT)
+	+ Sprite.
+
+||ALIEN = (SPRITE || ALIEN_CONSTRAINT).
+
+/* spaceship */
+
+SPACESHIP_CONSTRAINT =
+	(create[MAX/2][MAX] -> MOVE[MAX/2]),
+MOVE[x:D] =
+	( when (x>0) west -> MOVE[x-1]
+	| when (x<MAX) east -> MOVE[x+1]
+	| rest -> MOVE[x]
+	| action[x][MAX] -> MOVE[x]
+	) + Sprite.
+
+/* missile */
+
+||SPACESHIP = ( SPRITE || SPACESHIP_CONSTRAINT).
+
+MISSILE_CONSTRAINT =
+	(create[D][MAX] -> MOVE),
+MOVE =
+	(north -> MOVE | end -> MISSILE_CONSTRAINT)
+	+ Sprite.
+||MISSILE = (SPRITE || MISSILE_CONSTRAINT).
+
+
+/* the game loop */
+
+COLLIDE(A='a, B='b) =
+	(tick 
+		-> [A].pos[p1:Coord] 
+		-> [B].pos[p2:Coord]
+		-> 	if (p1==p2 && p1!='undef && p2!='undef) 
+				then ([A][B].explode -> COLLIDE)
+			else
+				COLLIDE
+	).
+
+||SPACE_INVADERS =
+	(alien:ALIEN
+	|| spaceship:SPACESHIP
+	|| missile:MISSILE
+	|| COLLIDE('alien,'spaceship)
+	|| COLLIDE('missile,'alien))
+	
+	/{spaceship.action/missile.create,
+	tick/{alien,spaceship,missile}.tick}
+	>>{tick}.
+
