@@ -1,0 +1,29 @@
+/* coffee machine - extension #1 */
+
+const MAX_STEPS = 3
+const NUM_BEV = 2
+const MAX_SUGAR_LEVEL = 3
+const MAX_COFFEE = 2
+const MAX_TEA = 2
+const COFFEE = 1
+const TEA = 2
+
+range RANGE_STEPS = 1..MAX_STEPS 
+range BEVERAGES = 1..NUM_BEV
+range SUGAR_LEVELS = 1..MAX_SUGAR_LEVEL
+range AVAIL_COFFEE = 1..MAX_COFFEE
+range AVAIL_TEA = 1..MAX_TEA
+
+COFFEE_MACHINE = IDLE[1][MAX_COFFEE][MAX_TEA],
+IDLE[sl:SUGAR_LEVELS][c:AVAIL_COFFEE][t:AVAIL_COFFEE] = 
+  (when sl > 1 dec_sugar -> IDLE[sl-1]
+  |when sl < MAX_SUGAR_LEVEL inc_sugar -> IDLE[sl+1]
+  |coffee_button_pressed -> MAKING[COFFEE][1]
+  |tea_button_pressed -> MAKING[TEA][1]
+  |failure -> ERROR),
+MAKING[bev:BEVERAGES][i:RANGE_STEPS] = (when i < MAX_STEPS step -> MAKING[bev][i+1]
+                                       |when i == MAX_STEPS step -> RELEASE[bev]
+                                       |failure -> ERROR),
+RELEASE[bev:BEVERAGES] = (output[bev] -> grab -> IDLE[1]
+                        |failure -> ERROR).
+

@@ -49,7 +49,7 @@ Reference documentation:
 
 **Exercise: modelling a full-fledged coffee machine**
 
-The coffee machines provides two buttons, to choose either coffee or tea. By doing the selection, the machine starts the making process, that lasts N steps (conceptually visualised by a process bar). When the beverage is ready, the machine waits the user to grab it and then it goes back to the initial state. A failure can occur in any moment: in the case of failure, the machine stops in an error state.
+The coffee machine provides two buttons, to choose either coffee or tea. By doing the selection, the machine starts the making process, that lasts N steps (conceptually visualised by a process bar). When the beverage is ready, the machine waits the user to grab it and then it goes back to the initial state. A failure can occur in any moment: in the case of failure, the machine stops in an error state.
 
 *Extension #1: Sugar levels*
 

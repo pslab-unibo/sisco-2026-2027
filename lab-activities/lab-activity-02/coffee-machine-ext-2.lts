@@ -1,0 +1,34 @@
+/* Coffee machine - extension #2 */
+
+const MAX_STEPS = 3
+const MAX_COFFEE = 2
+const MAX_TEA = 2
+const MAX_SUGAR = 3
+const INITIAL_SUGAR_LEVEL = 2
+const COFFEE = 1
+const TEA = 2
+
+range RANGE_STEPS = 1..MAX_STEPS 
+range BEVERAGES = 1..2
+range SUGAR_LEVELS = 0..MAX_SUGAR
+range AVAIL_COFFEE = 0..MAX_COFFEE
+range AVAIL_TEA = 0..MAX_TEA
+
+COFFEE_MACHINE = START[INITIAL_SUGAR_LEVEL][MAX_COFFEE][MAX_TEA],
+START[sl:SUGAR_LEVELS][c:AVAIL_COFFEE][t:AVAIL_TEA] =
+  if (c == 0 && t == 0) then MAINTENANCE else IDLE[sl][c][t],
+IDLE[sl:SUGAR_LEVELS][c:AVAIL_COFFEE][t:AVAIL_TEA] =
+  (when sl > 0 dec_sugar -> IDLE[sl-1][c][t]
+  |when sl < MAX_SUGAR inc_sugar -> IDLE[sl+1][c][t]
+  |when c > 0 coffee_button_pressed -> MAKING[COFFEE][1][c-1][t]
+  |when t > 0 tea_button_pressed -> MAKING[TEA][1][c][t-1]
+  |failure -> ERROR),
+MAKING[bev:BEVERAGES][i:RANGE_STEPS][c:AVAIL_COFFEE][t:AVAIL_TEA] = 
+ (when i < MAX_STEPS step -> MAKING[bev][i+1][c][t]
+ |when i == MAX_STEPS step -> RELEASE[bev][c][t]
+ |failure -> ERROR),
+RELEASE[bev:BEVERAGES][c:AVAIL_COFFEE][t:AVAIL_TEA] = 
+ (output[bev] -> grab -> START[INITIAL_SUGAR_LEVEL][c][t]
+ |failure -> ERROR),
+MAINTENANCE = 
+ (restored -> START[INITIAL_SUGAR_LEVEL][MAX_COFFEE][MAX_TEA]).

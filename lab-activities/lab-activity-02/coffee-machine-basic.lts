@@ -1,0 +1,22 @@
+/* coffee machine basic */
+
+const MAX_STEPS = 3
+const COFFEE = 1
+const TEA = 1
+range RANGE_STEPS = 1..MAX_STEPS 
+range BEVERAGES = 1..2
+
+COFFE_MACHINE = IDLE,
+IDLE = 
+  (coffee_button_pressed -> MAKING[COFFEE][1]
+  |tea_button_pressed -> MAKING[TEA][1]
+  |failure -> ERROR),
+MAKING[bev:BEVERAGES][i:RANGE_STEPS] = 
+  (when i < MAX_STEPS step -> MAKING[bev][i+1]
+  |when i == MAX_STEPS step -> RELEASE[bev]
+  |failure -> ERROR),
+RELEASE[bev:BEVERAGES] = 
+  (output[bev] -> grab -> IDLE
+  |failure -> ERROR).
+
+
