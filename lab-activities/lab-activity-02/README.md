@@ -93,15 +93,15 @@ IDLE[sl:SUGAR_LEVELS][c:AVAIL_COFFEE][t:AVAIL_TEA] =
   |when c > 0 coffee_button_pressed -> MAKING[COFFEE][1][c-1][t]
   |when t > 0 tea_button_pressed -> MAKING[TEA][1][c][t-1]
   |failure -> ERROR),
-MAKING[bev:BEVERAGES][i:RANGE_STEPS][c:AVAIL_COFFEE][t:AVAIL_TEA] =
-  (when i < MAX_STEPS step -> MAKING[bev][i+1][c][t]
-  |when i == MAX_STEPS step -> RELEASE[bev][c][t]
-  |failure -> ERROR),
+MAKING[bev:BEVERAGES][i:RANGE_STEPS][c:AVAIL_COFFEE][t:AVAIL_TEA] = 
+ (when i < MAX_STEPS step -> MAKING[bev][i+1][c][t]
+ |when i == MAX_STEPS step -> RELEASE[bev][c][t]
+ |failure -> ERROR),
 RELEASE[bev:BEVERAGES][c:AVAIL_COFFEE][t:AVAIL_TEA] = 
-  (output[bev] -> grab -> START[INITIAL_SUGAR_LEVEL][c][t]
-  |failure -> ERROR),
+ (output[bev] -> grab -> START[INITIAL_SUGAR_LEVEL][c][t]
+ |failure -> ERROR),
 MAINTENANCE = 
-  (restored -> START[INITIAL_SUGAR_LEVEL][MAX_COFFEE][MAX_TEA]).
+ (restored -> START[INITIAL_SUGAR_LEVEL][MAX_COFFEE][MAX_TEA]).
 ```
 
 **Modelling the Coffee Machine using Petri Nets** 

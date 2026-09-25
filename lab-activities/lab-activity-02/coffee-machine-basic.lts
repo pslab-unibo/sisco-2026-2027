@@ -2,7 +2,7 @@
 
 const MAX_STEPS = 3
 const COFFEE = 1
-const TEA = 1
+const TEA = 2
 range RANGE_STEPS = 1..MAX_STEPS 
 range BEVERAGES = 1..2
 
