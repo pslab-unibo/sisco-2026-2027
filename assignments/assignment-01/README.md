@@ -1,6 +1,6 @@
 Concurrent Systems a.y. 2026-2027 - ISI LM UNIBO - Cesena Campus
 
-# Assignment #01 -  
+# Assignment #01 
 
 v1.0.0-20271002
 
