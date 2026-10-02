@@ -42,7 +42,7 @@ version: 1.0.0 - last update: 20260930
   ```
   /* coffee machine basic + two users */
 
-  const MAX_STEPS = 1
+  const MAX_STEPS = 3
   range RANGE_STEPS = 1..MAX_STEPS 
   range BEVERAGES = 1..2
 
