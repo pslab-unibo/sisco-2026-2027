@@ -104,7 +104,7 @@ version: 1.0.0 - last update: 20260930
   USER_COFFEE  = 
     (want_coffee -> acquire -> READ_SUGAR_LEVEL),
   READ_SUGAR_LEVEL =
-    (read_sugar_value[sl:SUGAR_LEVELS] -> DECREASE_COFFEE[sl]),
+    (read_sugar_level[sl:SUGAR_LEVELS] -> DECREASE_COFFEE[sl]),
   DECREASE_COFFEE[sl:SUGAR_LEVELS] = 
     (when sl > 0 dec_sugar -> DECREASE_COFFEE[sl-1]
     |when sl == 0 coffee_button_pressed -> grab -> release -> drink -> USER_COFFEE).
@@ -112,7 +112,7 @@ version: 1.0.0 - last update: 20260930
   USER_TEA  = 
     (want_tea -> acquire -> READ_SUGAR_LEVEL),
   READ_SUGAR_LEVEL =
-    (read_sugar_value[sl:SUGAR_LEVELS] -> INCREASE_SUGAR[sl]),
+    (read_sugar_level[sl:SUGAR_LEVELS] -> INCREASE_SUGAR[sl]),
   INCREASE_SUGAR[sl:SUGAR_LEVELS] = 
     (when sl < MAX_SUGAR_LEVEL inc_sugar -> INCREASE_SUGAR[sl+1]
     |when sl == MAX_SUGAR_LEVEL tea_button_pressed -> grab -> release -> drink -> USER_TEA).
