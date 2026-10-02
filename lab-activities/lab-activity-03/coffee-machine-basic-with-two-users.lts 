@@ -1,0 +1,28 @@
+/* coffee machine basic + two users */
+
+const MAX_STEPS = 1
+range RANGE_STEPS = 1..MAX_STEPS 
+range BEVERAGES = 1..2
+
+COFFEE_MACHINE = IDLE,
+IDLE = 
+  (coffee_button_pressed -> MAKING[1][1]
+  |tea_button_pressed -> MAKING[2][1]
+  |failure -> ERROR),
+MAKING[bev:BEVERAGES][i:RANGE_STEPS] = 
+  (when i < MAX_STEPS step -> MAKING[bev][i+1]
+  |when i == MAX_STEPS step -> RELEASE[bev]
+  |failure -> ERROR),
+RELEASE[bev:BEVERAGES] = 
+  (output[bev] -> grab -> IDLE
+  |failure -> ERROR)\{step, output}.
+
+USER_COFFEE  = 
+  (want_coffee -> coffee_button_pressed -> grab -> drink -> USER_COFFEE).
+
+USER_TEA  = 
+  (want_tea -> tea_button_pressed -> grab -> drink -> USER_TEA).
+
+||USERS = (a:USER_COFFEE || b:USER_TEA).
+
+||COFFEE_MACHINE_AND_USERS = ( USERS || {a,b}::COFFEE_MACHINE).
