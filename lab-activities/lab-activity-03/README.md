@@ -2,7 +2,7 @@ Concurrent Systems a.y. 2026-2027 - ISI LM UNIBO - Cesena Campus
 
 # Lab Activity #03 - 20261002
 
-version: 1.0.0 - last update: 20260930
+version: 1.1.0 - last update: 20261003
 
 ### Modelling concurrent systems - Part III
 
@@ -73,53 +73,53 @@ version: 1.0.0 - last update: 20260930
 
 - Modelling the Coffee Machine with sugar levels, and *two users, one wanting only coffee with no sugar, and one wanting only tea with max sugar - the two users should not interfere* 
   ```
-const MAX_STEPS = 3
-const NUM_BEV = 2
-const MAX_SUGAR_LEVEL = 3
-const COFFEE = 1
-const TEA = 2
+  const MAX_STEPS = 3
+  const NUM_BEV = 2
+  const MAX_SUGAR_LEVEL = 3
+  const COFFEE = 1
+  const TEA = 2
 
-range RANGE_STEPS = 1..MAX_STEPS 
-range BEVERAGES = 1..NUM_BEV
-range SUGAR_LEVELS = 0..MAX_SUGAR_LEVEL
+  range RANGE_STEPS = 1..MAX_STEPS 
+  range BEVERAGES = 1..NUM_BEV
+  range SUGAR_LEVELS = 0..MAX_SUGAR_LEVEL
 
-COFFEE_MACHINE = IDLE[1],
-IDLE[sl:SUGAR_LEVELS] = 
-  (when sl > 0 dec_sugar -> IDLE[sl-1]
-  |when sl < MAX_SUGAR_LEVEL inc_sugar -> IDLE[sl+1]
-  |read_sugar_level[sl] -> IDLE[sl]
-  |coffee_button_pressed -> MAKING[COFFEE][1]
-  |tea_button_pressed -> MAKING[TEA][1]
-  |failure -> ERROR),
-MAKING[bev:BEVERAGES][i:RANGE_STEPS] = 
-  (when i < MAX_STEPS step -> MAKING[bev][i+1]
-  |when i == MAX_STEPS step -> RELEASE[bev]
-  |failure -> ERROR),
-RELEASE[bev:BEVERAGES] = 
-  (output[bev] -> grab -> IDLE[1]
-  |failure -> ERROR).
+  COFFEE_MACHINE = IDLE[1],
+  IDLE[sl:SUGAR_LEVELS] = 
+    (when sl > 0 dec_sugar -> IDLE[sl-1]
+    |when sl < MAX_SUGAR_LEVEL inc_sugar -> IDLE[sl+1]
+    |read_sugar_level[sl] -> IDLE[sl]
+    |coffee_button_pressed -> MAKING[COFFEE][1]
+    |tea_button_pressed -> MAKING[TEA][1]
+    |failure -> ERROR),
+  MAKING[bev:BEVERAGES][i:RANGE_STEPS] = 
+    (when i < MAX_STEPS step -> MAKING[bev][i+1]
+    |when i == MAX_STEPS step -> RELEASE[bev]
+    |failure -> ERROR),
+  RELEASE[bev:BEVERAGES] = 
+    (output[bev] -> grab -> IDLE[1]
+    |failure -> ERROR).
 
-USER_COFFEE  = 
-  (want_coffee -> acquire -> READ_SUGAR_LEVEL),
-READ_SUGAR_LEVEL =
-  (read_sugar_level[sl:SUGAR_LEVELS] -> DECREASE_SUGAR[sl]),
-DECREASE_SUGAR[sl:SUGAR_LEVELS] = 
-  (when sl > 0 dec_sugar -> READ_SUGAR_LEVEL
-  |when sl == 0 coffee_button_pressed -> grab -> release -> drink -> USER_COFFEE).
+  USER_COFFEE  = 
+    (want_coffee -> acquire -> READ_SUGAR_LEVEL),
+  READ_SUGAR_LEVEL =
+    (read_sugar_level[sl:SUGAR_LEVELS] -> DECREASE_SUGAR[sl]),
+  DECREASE_SUGAR[sl:SUGAR_LEVELS] = 
+    (when sl > 0 dec_sugar -> READ_SUGAR_LEVEL
+    |when sl == 0 coffee_button_pressed -> grab -> release -> drink -> USER_COFFEE).
 
-USER_TEA  = 
-  (want_tea -> acquire -> READ_SUGAR_LEVEL),
-READ_SUGAR_LEVEL =
-  (read_sugar_level[sl:SUGAR_LEVELS] -> INCREASE_SUGAR[sl]),
-INCREASE_SUGAR[sl:SUGAR_LEVELS] = 
-  (when sl < MAX_SUGAR_LEVEL inc_sugar -> READ_SUGAR_LEVEL
-  |when sl == MAX_SUGAR_LEVEL tea_button_pressed -> grab -> release -> drink -> USER_TEA).
+  USER_TEA  = 
+    (want_tea -> acquire -> READ_SUGAR_LEVEL),
+  READ_SUGAR_LEVEL =
+    (read_sugar_level[sl:SUGAR_LEVELS] -> INCREASE_SUGAR[sl]),
+  INCREASE_SUGAR[sl:SUGAR_LEVELS] = 
+    (when sl < MAX_SUGAR_LEVEL inc_sugar -> READ_SUGAR_LEVEL
+    |when sl == MAX_SUGAR_LEVEL tea_button_pressed -> grab -> release -> drink -> USER_TEA).
 
-LOCK = (acquire -> release -> LOCK).
+  LOCK = (acquire -> release -> LOCK).
 
-||USERS = (a:USER_COFFEE || b:USER_TEA).
+  ||USERS = (a:USER_COFFEE || b:USER_TEA).
 
-||COFFEE_MACHINE_AND_USERS = ( USERS || {a,b}::LOCK || {a,b}::COFFEE_MACHINE).
+  ||COFFEE_MACHINE_AND_USERS = ( USERS || {a,b}::LOCK || {a,b}::COFFEE_MACHINE).
   ``` 
   [File](./coffee-machine-sugar-with-two-users.lts)
   
