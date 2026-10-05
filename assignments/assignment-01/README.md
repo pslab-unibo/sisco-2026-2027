@@ -2,7 +2,7 @@ Concurrent Systems a.y. 2026-2027 - ISI LM UNIBO - Cesena Campus
 
 # Assignment #01 
 
-v1.0.1-20271002
+v1.0.2-20271005
 
 The assignment is about 
 - Modelling a concurrent system, using FSP and Petri Nets.
@@ -27,8 +27,8 @@ Properties that the system should have:
 ### The deliverable
 
 The deliverable must be a zipped folder `Assignment-01`, to be submitted on the course web site, including:  
-- A report (in PDF or MD), briefly describing the proposed solution.
-- A text based *.lts file containing the sources in FSP
+- A report (in PDF or MD), briefly describing the proposed solution, including all three points (model in FSP, model in Petri Nets, properties in FTFL and result of the analysis using the LTSA tool).
+- A text based *.lts file containing the sources in FSP.
 
 
 
