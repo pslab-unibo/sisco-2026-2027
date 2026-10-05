@@ -106,7 +106,10 @@ MAINTENANCE =
 
 **Modelling the Coffee Machine using Petri Nets** 
 
-- [TINA tool](https://projects.laas.fr/tina)
+Examples of Petri Net tools that can be used:
+- [TINA](https://projects.laas.fr/tina)
+- [PIPE2](https://pipe2.sourceforge.net/)
+- [WoPeD](https://woped.dhbw-karlsruhe.de/)
 
 **Modelling concurrent systems** 
 
