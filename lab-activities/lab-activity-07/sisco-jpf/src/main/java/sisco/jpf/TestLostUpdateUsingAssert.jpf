@@ -1,0 +1,5 @@
+target = sisco.jpf.TestLostUpdateUsingAssert
+
+classpath=/home/sisco-jpf/target/classes
+
+report.console.property_violation=error,trace

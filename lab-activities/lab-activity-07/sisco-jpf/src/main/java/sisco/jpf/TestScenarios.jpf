@@ -1,0 +1,7 @@
+target = sisco.jpf.TestScenarios
+
+classpath=/home/sisco-jpf/target/classes
+
+listener=gov.nasa.jpf.listener.PreciseRaceDetector
+
+report.console.property_violation=error,trace
