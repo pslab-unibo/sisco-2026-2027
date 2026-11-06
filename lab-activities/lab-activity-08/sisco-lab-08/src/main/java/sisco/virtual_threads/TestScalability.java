@@ -3,7 +3,7 @@ package sisco.virtual_threads;
 import java.time.Duration;
 import java.util.ArrayList;
 
-public class TestScalabilityVT {
+public class TestScalability {
 
 	public static void main(String[] args) {
 		var t0 = System.currentTimeMillis();

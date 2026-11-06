@@ -1,4 +1,4 @@
-package sisco.chrono_mvc.reactive_no_races;
+package sisco.mvc_chrono.reactive_no_races;
 
 import java.util.*;
 

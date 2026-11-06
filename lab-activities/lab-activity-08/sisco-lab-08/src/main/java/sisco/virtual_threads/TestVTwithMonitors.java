@@ -21,7 +21,7 @@ class MyMonitor {
 	}
 }
 
-public class TestVT {
+public class TestVTwithMonitors {
 	
 	public static void main(String[] args) throws Exception {
 

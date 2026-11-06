@@ -4,7 +4,7 @@ import java.time.Duration;
 import java.util.concurrent.Executors;
 import java.util.stream.IntStream;
 
-public class TestScalabilityVT2 {
+public class TestScalabilityWithExecutor {
 
 	public static void main(String[] args) {
 		var t0 = System.currentTimeMillis();
