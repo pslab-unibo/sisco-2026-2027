@@ -1,8 +1,8 @@
 Concurrent Systems a.y. 2026-2027 - ISI LM UNIBO - Cesena Campus
 
-# Lab Activity #08 - 20261106
+# Lab Activity #08 - 20261106 and 20261109
 
-v1.0.0-20261029
+v1.0.1-20261106
 
 ### How to Implement Monitors in Java
 
