@@ -50,7 +50,7 @@ We want to develop a concurrent version of the simulation, in two steps describe
 
     The concurrent programs should be designed according the principles studied during the course, promoting modularity, encapsulation as well as performance, reactivity. For enabling/managing interaction among active components/threads, high-level constructs such as monitors should be preferably used (vs. low-level mechanisms) when possible, providing your own implementation.
 
-2) Second, we want to develop a version with a GUI that allow to: 
+2) Second step, we want to develop a version with a GUI that allow to: 
     - visualize every step of the simulation, and
     - start, stop, suspend, execute step-by-step the simulation.
 
@@ -60,10 +60,10 @@ The documentation can be provided as a report (either in *.md or *.pdf), includi
   - A brief analsysis of the problem, focusing in particular those aspects that are relevant from a concurrency point of view
   - A brief description of the adopted design, the architecture (structure) and the behaviour
     - for the behaviour, a model based on FSP should be included, identifying some correctness properties
-  - Performance tests -- only for step (1), to show: 
+  - Performance tests -- only for step 1 (no GUI), to show: 
     - if/how performances are improved compared with a sequential version
     - if/how performances scale with the number of available cores 
-  - Verification of the program using model-checking -- only for step (1), multithreaded programming version 
+  - Verification of the program using model-checking -- only for step 1 (no GUI), multithreaded programming version (no Executors)
     - using JPF applied with a simplified version of the program.
 
 ### The deliverable
