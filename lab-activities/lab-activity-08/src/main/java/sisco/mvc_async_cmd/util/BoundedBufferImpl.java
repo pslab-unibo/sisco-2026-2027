@@ -1,6 +1,7 @@
 package sisco.mvc_async_cmd.util;
 
 import java.util.LinkedList;
+import java.util.Optional;
 
 /**
  * 
@@ -36,6 +37,14 @@ public class BoundedBufferImpl<Item> implements BoundedBuffer<Item> {
 		return item;
 	}
 
+	public synchronized Optional<Item> poll() {
+		if (isEmpty()) {
+			return Optional.empty();
+		} else {
+			return Optional.of(buffer.removeFirst());
+		}
+	}
+	
 	private boolean isFull() {
 		return buffer.size() == maxSize;
 	}

@@ -19,7 +19,7 @@ public class ActiveController extends Thread {
 		while (true) {
 			try {
 				log("Waiting for cmds ");
-				var cmd = cmdBuffer.get();
+				var cmd = cmdBuffer.get(); /* blocking */				
 				log("new cmd fetched: " + cmd);
 				cmd.execute(counter);
 			} catch (Exception ex) {
