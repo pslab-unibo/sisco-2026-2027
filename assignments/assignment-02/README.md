@@ -42,7 +42,7 @@ We want to develop a concurrent version of the simulation, in two steps describe
 
 1) First step: we want to develop a concurrent version without visualisation and interaction with the user, focusing only on performances.  
 
-    The concurrent program should be able to run a simulation with a certain number of bodies N (initialised randomly), for a number of simulation steps M. A simple extension to consider is about the space, that should be 3D instead of 2D.
+    The concurrent program should be able to run a simulation with a certain number of bodies N (initialised randomly), for a number of simulation steps M. 
 
     In this case, two different implementations must be developed:
     - One based on Java **multithreaded programming**, using only default/platform threads;
