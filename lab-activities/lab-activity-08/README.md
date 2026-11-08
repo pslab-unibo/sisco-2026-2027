@@ -45,9 +45,10 @@ v1.0.1-20261106
   - Why there is a deadlock?
 -  Improving structure in task-oriented programming  
     -  `ForkJoin` executor   
-        - map-reduce example: `sisco.executors.fj`   
-    - Structured Concurrency (JEP 437)    
-
+      - map-reduce example: `sisco.executors.fj`   
+    - Structured Concurrency [(JEP 533: Structured Concurrency (Seventh Preview, 2026))](https://openjdk.org/jeps/533)  
+      - still a preview API, disabled by default. To enable it:
+        - Compile the program with `javac --release 27 --enable-preview` <Main> and run it with `java --enable-preview <Main>`,
 ### Virtual Threads 
 
 **[Lab Notes] Virtual Threads**
